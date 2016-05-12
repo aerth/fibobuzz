@@ -3,44 +3,59 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"strconv"
+	"math/big"
+	"os"
 )
 
-import "os"
-
-func isFizz(i int) bool {
-	if i%3 == 0 {
+func isPrime(i *big.Int) bool {
+	j := new(big.Int)
+	j.Set(i)
+	if j.ProbablyPrime(30) {
 		return true
 	}
 	return false
 }
 
-func isBuzz(i int) bool {
-	if i%5 == 0 {
-		return true
-	}
-	return false
-}
+var f = big.NewInt(3)
+var buzz = big.NewInt(5)
+var fb = big.NewInt(15)
 
 func main() {
+
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
-		j := scanner.Text()
-		i, err := strconv.Atoi(j)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, err.Error())
-		}
-		if isFizz(i) {
-			fmt.Printf("Fizz")
-			if isBuzz(i) {
-				fmt.Printf("Buzz")
-			}
-			fmt.Printf("\n")
-		} else if isBuzz(i) {
-			fmt.Println("Buzz")
+		s := scanner.Text()
+		b := new(big.Int)
+		//x := new(big.Int)
+		//y := new(big.Int)
+		b.SetString(s, 0)
+
+		//	fmt.Printf(b.Text(10))
+		y := new(big.Int).Mod(b, f)
+		z := new(big.Int).Mod(b, buzz)
+		x := new(big.Int).Mod(b, fb)
+		if x.Int64() == 0 {
+			fmt.Printf("fizzbuzz")
 		} else {
-			fmt.Println(i)
+			if y.Int64() == 0 {
+				fmt.Printf("fizz")
+			} else if z.Int64() == 0 {
+				fmt.Printf("buzz")
+			} else {
+				fmt.Printf(s)
+			}
+
 		}
+
+		//	fmt.Println(x, y, z)
+
+		//		fmt.Println(y)
+		//		fmt.Println(z)
+		if isPrime(b) {
+			fmt.Printf(" is PRIME")
+		}
+
+		fmt.Printf("\n")
 	}
 	if err := scanner.Err(); err != nil {
 		fmt.Fprintln(os.Stderr, "reading standard input:", err)
