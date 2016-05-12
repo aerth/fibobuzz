@@ -23,7 +23,7 @@ func genfib() {
 		w := bufio.NewWriter(os.Stdout)
 		fmt.Fprintf(w, "%v\n", F1)
 		w.Flush()
-		time.Sleep(time.Millisecond)
+		time.Sleep(time.Millisecond * 300)
 	}
 
 }

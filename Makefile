@@ -2,10 +2,8 @@ VERSION = "$(shell git rev-parse --short HEAD)"
 
 
 all:
-	go build -ldflags "-X main.VERSION=$(VERSION)" -o fibonize ./fibonize.go
-	go build -ldflags "-X main.VERSION=$(VERSION)" -o fizzbuzz ./fizzbuzz.go
+	mkdir bin || true && go build -ldflags "-X main.VERSION=$(VERSION)" -o bin/fibonize ./fibonize.go && go build -ldflags "-X main.VERSION=$(VERSION)" -o bin/fizzbuzz ./fizzbuzz.go && echo && echo "[fibobuzz]" && echo "Successfully Built" && echo "Now type: make run"
 
 run:
 	./fibonize | ./fizzbuzz
-clean:
-	rm -f fibonize fizzbuzz
+
