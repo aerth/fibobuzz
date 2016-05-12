@@ -39,12 +39,12 @@ func main() {
 		z := new(big.Int).Mod(b, buzz)
 		x := new(big.Int).Mod(b, fb)
 		if x.Int64() == 0 {
-			fmt.Printf("fizzbuzz")
+			fmt.Printf("FizzBuzz")
 		} else {
 			if y.Int64() == 0 {
-				fmt.Printf("fizz")
+				fmt.Printf("Fizz")
 			} else if z.Int64() == 0 {
-				fmt.Printf("buzz")
+				fmt.Printf("Buzz")
 			} else {
 				fmt.Printf(s)
 			}
@@ -56,7 +56,7 @@ func main() {
 		//		fmt.Println(y)
 		//		fmt.Println(z)
 		if isPrime(b) {
-			fmt.Printf(" is PRIME")
+			fmt.Printf(" is prime")
 		}
 
 		fmt.Printf("\n")
