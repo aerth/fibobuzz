@@ -16,12 +16,16 @@ func isPrime(i *big.Int) bool {
 	return false
 }
 
+var VERSION = "undefined"
 var f = big.NewInt(3)
 var buzz = big.NewInt(5)
 var fb = big.NewInt(15)
 
 func main() {
-
+	if len(os.Args) > 1 {
+		fmt.Println("Version #", VERSION)
+		os.Exit(0)
+	}
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
 		s := scanner.Text()
