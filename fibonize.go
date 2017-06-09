@@ -2,7 +2,6 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"math/big"
 	"os"
@@ -20,9 +19,7 @@ func genfib() {
 	for F1.Cmp(&limit) < 0 {
 		F1.Add(F1, F2)
 		F1, F2 = F2, F1
-		w := bufio.NewWriter(os.Stdout)
-		fmt.Fprintf(w, "%v\n", F1)
-		w.Flush()
+		fmt.Printf("%v\n", F1)
 		time.Sleep(time.Millisecond * 100)
 	}
 
