@@ -29,10 +29,6 @@ echo 1 2 3 | ./bin/fizzbuzz # space delimited
 
 ```
 
-
-
-### information
-
 ### author
 
 aerth <aerth@riseup.net>
