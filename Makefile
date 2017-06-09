@@ -1,19 +1,17 @@
-VERSION = "$(shell git rev-parse --short HEAD)"
-
-
-make:
-	mkdir -p bin && go build -ldflags "-X main.VERSION=$(VERSION)" -o bin/fibonize ./fibonize.go &&\
-	go build -ldflags "-X main.VERSION=$(VERSION)" -o bin/fizzbuzz ./fizzbuzz.go && \
-	go build -ldflags "-X main.VERSION=$(VERSION)" -o bin/increment ./increment.go
-	@echo "[fibobuzz]" && echo "Successfully Built" && echo "Now type: 'make run' or 'make fizzbuzz' to try it out!"
-
-all: build
-
+VERSION = 0.2.$(shell git rev-parse --short HEAD)
+DATE = $(shell date -u | base64 )
+GOBIN=${PWD}/bin/
+make: clean
+	mkdir -p bin && \
+	GOBIN=${GOBIN} go install -v -ldflags='-X main.buildtime="${DATE}" -X main.version="${VERSION}"' ./cmd/...
+	@echo build success. now run 'make fizzbuzz' or 'make run' to test
 run:
-	echo "Fibonacci | FizzBuzz"
 	./bin/fibonize | ./bin/fizzbuzz
 
 fizzbuzz:
-	echo "Normal FizzBuzz"
 	./bin/increment | ./bin/fizzbuzz
+
+clean:
+	rm -rvf ./bin/fizzbuzz ./bin/increment ./bin/fibonize
+	rmdir ./bin || true
 

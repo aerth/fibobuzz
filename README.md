@@ -1,11 +1,49 @@
 # fibobuzz
 
-### fibonacci vs primality
+  * fibonize - generate fibonacci sequence (to stdout)
+  * increment - start counting from 1 (to stdout)
+  * fizzbuzz - (reads stdin) fizz multiples of three, buzz multiples of five, fizzbuzz multiples of both three and five.
+  * fizzbuzz also checks for prime
 
-Simple! I wanted to run a primal fizzbuzz test with fibonacci input, but ran into trouble at the uint64 limit.
+### usage
 
-So, "fibonize", "increment", and "fizzbuzz" all use Go's "math/big" package to count REALLY high!
+  1. compile using 'make'
+  2. run fizzbuzz using 'make fizzbuzz'
+  3. run fibobuzz using 'make run'
 
-And fizzbuzz checks for primes.  The technique I am using for primality check is probably not going to win you a record. This project was me learning the "math/big" and integrating os.Stdin/os.Stdout pipelines.
+### example
 
-There is a small delay in the counting to go easy on the CPU when checking very large numbers for primality.
+```
+
+# reads standard input until EOF
+echo 42 | ./bin/fizzbuzz
+echo 7 | ./bin/fizzbuzz
+echo 300000 | ./bin/fizzbuzz
+echo 300000000000000000000000000000000000000000 | ./bin/fizzbuzz
+printf '30\n31' | ./bin/fizzbuzz
+# try even larger numbers!
+
+
+
+```
+
+
+
+### information
+
+### author
+
+aerth <aerth@riseup.net>
+
+### known bugs
+
+  * non-numeric input (such as "42 hello 42") will result in a FizzBuzz
+
+```
+ echo 7 bug 7 | ./bin/fizzbuzz
+ echo 8 bug 7 | ./bin/fizzbuzz
+ echo 9 bug 7 | ./bin/fizzbuzz
+ echo 10 bug 7 | ./bin/fizzbuzz
+```
+
+
