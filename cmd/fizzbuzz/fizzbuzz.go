@@ -44,13 +44,14 @@ func main() {
 	split := func(data []byte, atEOF bool) (advance int, token []byte, err error) {
 		advance, token, err = bufio.ScanWords(data, atEOF)
 		if err == nil && token != nil {
+			out := []byte{}
 			for _, char := range token {
 				_, hasLettersOrTooBig := strconv.ParseInt(string(char), 10, 32)
-				if hasLettersOrTooBig != nil {
-					println(hasLettersOrTooBig.Error())
-					token = nil // just erase line and continue
+				if hasLettersOrTooBig == nil {
+					out = append(out, char)
 				}
 			}
+			token = out
 		}
 		return
 	}
