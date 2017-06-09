@@ -20,7 +20,9 @@ echo 42 | ./bin/fizzbuzz
 echo 7 | ./bin/fizzbuzz
 echo 300000 | ./bin/fizzbuzz
 echo 300000000000000000000000000000000000000000 | ./bin/fizzbuzz
-printf '30\n31' | ./bin/fizzbuzz
+printf '30\n31' | ./bin/fizzbuzz # line delimited
+echo 1 test 2 | ./bin/fizzbuzz # non-digit chars
+echo 1 2 3 | ./bin/fizzbuzz # space delimited
 # try even larger numbers!
 
 
@@ -35,15 +37,5 @@ printf '30\n31' | ./bin/fizzbuzz
 
 aerth <aerth@riseup.net>
 
-### known bugs
-
-  * non-numeric input (such as "42 hello 42") will result in a FizzBuzz
-
-```
- echo 7 bug 7 | ./bin/fizzbuzz
- echo 8 bug 7 | ./bin/fizzbuzz
- echo 9 bug 7 | ./bin/fizzbuzz
- echo 10 bug 7 | ./bin/fizzbuzz
-```
 
 
